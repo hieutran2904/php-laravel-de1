@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TheLoaiController;
 use App\Http\Controllers\TinTucController;
+use App\Http\Controllers\LoginCustomController;
+use App\Http\Controllers\HomeController;
 use Brian2694\Toastr\Facades\Toastr;
 
 /*
@@ -18,11 +20,17 @@ use Brian2694\Toastr\Facades\Toastr;
 */
 
 Route::get('/', function () {
-    Toastr::success('Has been add successfully :)', 'Success');
-    return view('home');
+    return view('auth.login');
 });
 
-Auth::routes();
+// ======= Login controller =======
+Route::controller(LoginCustomController::class)->group(function () {
+    Route::get('login', 'index')->name('login');
+    Route::post('login', 'login')->name('loginCustom');
+    Route::get('logout', 'logout')->name('logout');
+});
+
+// Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

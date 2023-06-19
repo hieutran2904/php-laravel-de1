@@ -26,7 +26,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -52,7 +52,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}">{{ __('Logout') }}</a>
+                        </li>
+                        {{-- @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -83,7 +86,7 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @endguest --}}
                     </ul>
                 </div>
             </div>

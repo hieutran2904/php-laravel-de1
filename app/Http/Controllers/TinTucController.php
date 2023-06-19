@@ -14,7 +14,7 @@ class TinTucController extends Controller
     public function index()
     {
         $tintuc = TinTuc::paginate(5);
-        return view('tintuc.index', compact('tintuc'))->with('i', (request()->input('page', 1) - 1) * 5,[
+        return view('tintuc.index', compact('tintuc'))->with('i', (request()->input('page', 1) - 1) * 5, [
             'theloais' => TheLoai::all()
         ]);
     }
@@ -77,7 +77,10 @@ class TinTucController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $tintuc = TinTuc::where('tieude', 'like', '%' . $search . '%')->paginate(5);
+        // $tintuc = TinTuc::where('tieude', 'like', '%' . $search . '%')->paginate(5);
+        $tintuc = TinTuc::where('tieude', 'like', '%' . $search . '%')
+            ->orWhere('matintuc', 'like', '%' . $search . '%')
+            ->paginate(5);
         return view('tintuc.index', compact('tintuc'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

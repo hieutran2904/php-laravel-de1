@@ -28,7 +28,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <th>STT</th>
-                        <th>ID</th>
+                        <th class="d-none">ID</th>
                         <th>Mã tin tức</th>
                         <th>Tiêu đề</th>
                         <th>Nội dung</th>
@@ -38,8 +38,8 @@
                     <tbody>
                         @foreach ($tintuc as $key => $value)
                             <tr>
-                                <td>{{ $i++ }}</td>
-                                <td>{{ $value->id }}</td>
+                                <td>{{ ++$i }}</td>
+                                <td class="d-none">{{ $value->id }}</td>
                                 <td>{{ $value->matintuc }}</td>
                                 <td>{{ $value->tieude }}</td>
                                 <td>{{ $value->noidung }}</td>
